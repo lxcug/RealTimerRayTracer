@@ -167,7 +167,7 @@ void Renderer::render(const Scene &scene, Camera &camera) {
 }
 
 glm::vec3 Renderer::traceRay(const Scene &scene, const Ray &ray, int depth) {
-    if (depth <= 0 || random_float() > m_russianRoulette) {
+    if (depth <= 0) {
         return scene.getBackgroundColor();
     }
 
@@ -183,7 +183,7 @@ glm::vec3 Renderer::traceRay(const Scene &scene, const Ray &ray, int depth) {
 
     // Note: Monte-Carlo Integration
     glm::vec3 color_from_scatter =
-            traceRay(scene, scattered, depth - 1) * sample.lightTransport / m_russianRoulette;
+            traceRay(scene, scattered, depth - 1) * sample.lightTransport;
 
     return color_from_emission + color_from_scatter;
 }

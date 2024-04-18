@@ -11,6 +11,8 @@
 
 class SpecularBxDF : public BxDF {
 public:
+    explicit SpecularBxDF(const glm::vec3 &albedo) : m_albedo(albedo) {}
+
     [[nodiscard]] BxDFSample sampleF(const glm::vec3 &wo, const glm::vec3 &normal) const override {
         BxDFSample sample;
 
@@ -24,23 +26,14 @@ public:
 
     // Note: the incident direction wi is drawn from Dirac Delta Distribution.
     [[nodiscard]] glm::vec3 evalLightTransport(const glm::vec3 &wi, const glm::vec3 &wo,
-                                 const glm::vec3 &normal) const override {
+                                               const glm::vec3 &normal) const override {
         float lightTransport = 1.f;
 
         return {lightTransport, lightTransport, lightTransport};
     }
 
-//    [[nodiscard]] glm::vec3 f(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3& normal) const override {
-//        float cosTheta = std::max(0.f, glm::dot(wi, normal));
-//
-//        return {1.f / cosTheta, 1.f / cosTheta, 1.f / cosTheta};
-//    }
-//
-//    [[nodiscard]] float
-//    pdf(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal) const override {
-//        // TODO: Add wi and reflect direction dot condition
-//        return 1.f;
-//    }
+private:
+    glm::vec3 m_albedo{.5f};
 };
 
 

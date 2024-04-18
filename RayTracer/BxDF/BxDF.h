@@ -61,24 +61,7 @@ public:
     [[nodiscard]] virtual BxDFSample
     sampleF(const glm::vec3 &wo, const glm::vec3 &normal) const = 0;
 
-//    /*!
-//     * Evaluate albedo * brdf for a given wi and wo.
-//     * @param wi
-//     * @param wo
-//     * @return
-//     */
-//    virtual glm::vec3
-//    f(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal) const = 0;
-//
-//    /*!
-//     * Evaluate pdf for a given wi and wo.
-//     * @param wi
-//     * @param wo
-//     * @return
-//     */
-//    virtual float pdf(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal) const = 0;
-
-    virtual glm::vec3 evalLightTransport(const glm::vec3 &wi, const glm::vec3 &wo,
+    [[nodiscard]] virtual glm::vec3 evalLightTransport(const glm::vec3 &wi, const glm::vec3 &wo,
                                            const glm::vec3 &normal) const = 0;
 };
 

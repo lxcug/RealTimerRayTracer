@@ -17,26 +17,23 @@
 
 class DiffuseEmissiveMaterial : public Material {
 public:
-    explicit DiffuseEmissiveMaterial(const glm::vec3 &albedo) : m_albedo(albedo) {}
+    explicit DiffuseEmissiveMaterial(const glm::vec3 &albedo) : m_BxDF(albedo) {}
 
     DiffuseEmissiveMaterial(const glm::vec3 &albedo, const glm::vec3 &emissive)
-            : m_albedo(albedo), m_emissive(emissive) {}
+            : m_BxDF(albedo), m_emissive(emissive) {}
 
     [[nodiscard]] BxDFSample scatter(const Ray &ray, const Intersection &isect) const override {
         BxDFSample sample = m_BxDF.sampleF(-ray.direction, isect.normal);
-        sample.lightTransport *= m_albedo;
 
         return sample;
     }
 
     [[nodiscard]] glm::vec3 emit(float u, float v, const glm::point3 &p) const override {
-        return {1.f, 1.f, 1.f};
+        return m_emissive;
     }
-
 
 private:
     DiffuseBxDF m_BxDF;
-    glm::vec3 m_albedo{.5f};
     glm::vec3 m_emissive{1.f};
 };
 

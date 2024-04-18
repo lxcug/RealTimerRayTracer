@@ -15,7 +15,7 @@ namespace SampleUtils {
 
         float theta = std::acos(sqrt(1.f - xi1));
         float phi = 2.f * pi * xi2;
-        float sin_theta = sin(theta);
+        float sin_theta = std::sin(theta);
         glm::vec3 local_dir(
                 sin_theta * cos(phi),
                 sin_theta * sin(phi),
@@ -24,7 +24,9 @@ namespace SampleUtils {
 
         if (glm::dot(local_dir, normal) < 0.f)
             return -local_dir;
-        return local_dir;
+        else
+            return local_dir;
+//        return buildCoord(normal) * local_dir;
     }
 
 

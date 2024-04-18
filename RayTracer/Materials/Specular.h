@@ -11,18 +11,16 @@
 
 class SpecularMaterial : public Material {
 public:
-    explicit SpecularMaterial(const glm::vec3 &albedo) : m_albedo(albedo) {}
+    explicit SpecularMaterial(const glm::vec3 &albedo) : m_BxDF(albedo) {}
 
     [[nodiscard]] BxDFSample scatter(const Ray &ray, const Intersection &isect) const override {
         BxDFSample sample = m_BxDF.sampleF(-ray.direction, isect.normal);
-        sample.lightTransport *= m_albedo;
 
         return sample;
     }
 
 private:
     SpecularBxDF m_BxDF;
-    glm::vec3 m_albedo;
 };
 
 

@@ -11,6 +11,8 @@
 
 class DiffuseBxDF : public BxDF {
 public:
+    explicit DiffuseBxDF(const glm::vec3& albedo) : m_albedo(albedo) {}
+
     [[nodiscard]] BxDFSample sampleF(const glm::vec3 &wo, const glm::vec3 &normal) const override {
         BxDFSample sample;
 
@@ -26,18 +28,11 @@ public:
                                  const glm::vec3 &normal) const override {
         float lightTransport = 1.f;
 
-        return {lightTransport, lightTransport, lightTransport};
+        return 1.f * m_albedo;
     }
 
-//    [[nodiscard]] glm::vec3
-//    f(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal) const override {
-//        return glm::vec3(inv_pi);
-//    }
-//
-//    [[nodiscard]] float
-//    pdf(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal) const override {
-//        return glm::dot(wi, normal) * inv_pi;
-//    }
+private:
+    glm::vec3 m_albedo{.5f};
 };
 
 #endif //REAL_TIME_RAY_TRACER_DIFFUSEBXDF_H

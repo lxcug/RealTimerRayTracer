@@ -5,9 +5,9 @@
 #ifndef REAL_TIME_RAY_TRACER_BVH_H
 #define REAL_TIME_RAY_TRACER_BVH_H
 
-#include "RealTimeRT.h"
-#include "Bounds.h"
-#include "shapes/Primitive.h"
+#include "Core/RealTimeRT.h"
+#include "Accelerator/Bounds.h"
+#include "Shapes/Primitive.h"
 
 #define BVH_LEAF_MAX_PRIMITIVES 4
 

@@ -5,10 +5,10 @@
 #ifndef REAL_TIME_RAY_TRACER_SCENE_H
 #define REAL_TIME_RAY_TRACER_SCENE_H
 
-#include "RealTimeRT.h"
-#include "shapes/Sphere.h"
+#include "Core/RealTimeRT.h"
+#include "Shapes/Sphere.h"
 #include <vector>
-#include "BVH.h"
+#include "Accelerator/BVH.h"
 
 
 class Scene {

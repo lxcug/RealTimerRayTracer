@@ -5,7 +5,7 @@
 #ifndef REAL_TIME_RAY_TRACER_INTERSECTION_H
 #define REAL_TIME_RAY_TRACER_INTERSECTION_H
 
-#include "RealTimeRT.h"
+#include "Core/RealTimeRT.h"
 #include <memory>
 
 

@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Core/Camera.h"
 #include "Walnut/Input/Input.h"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtc/quaternion.hpp>

@@ -5,7 +5,7 @@
 #ifndef REAL_TIME_RAY_TRACER_RAY_H
 #define REAL_TIME_RAY_TRACER_RAY_H
 
-#include "RealTimeRT.h"
+#include "Core/RealTimeRT.h"
 
 
 class Ray {

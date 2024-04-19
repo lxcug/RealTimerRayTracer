@@ -1,4 +1,4 @@
-#include "Scene.h"
+#include "Core/Scene.h"
 #include "Materials/Diffuse.h"
 #include "Materials/DiffuseEmissive.h"
 #include "Materials/Specular.h"

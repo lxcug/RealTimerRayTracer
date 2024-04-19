@@ -41,3 +41,11 @@ BxDF定义了两个接口，`sampleF`根据$\omega_o$和normal采样$\omega_i$�
 
 只有`wi = reflect(-wo, normal)`方向上才会有光线入射，可以理解为从Dirac Delta Distribution采样$\omega_i$，
 
+
+
+## Glossy
+
+
+
+Learn more in [Microfacet Theory](./Microfacet.md).
+

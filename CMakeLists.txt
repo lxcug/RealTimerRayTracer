@@ -10,23 +10,23 @@ include_directories(RayTracer)
 
 add_executable(real_time_ray_tracer
         RayTracer/WalnutApp.cpp
-        RayTracer/Renderer.cpp
-        RayTracer/Renderer.h
-        RayTracer/Ray.h
-        RayTracer/RealTimeRT.h
-        RayTracer/Camera.cpp
-        RayTracer/Camera.h
-        RayTracer/Scene.cpp
-        RayTracer/Scene.h
+        RayTracer/Core/Renderer.cpp
+        RayTracer/Core/Renderer.h
+        RayTracer/Core/Ray.h
+        RayTracer/Core/RealTimeRT.h
+        RayTracer/Core/Camera.cpp
+        RayTracer/Core/Camera.h
+        RayTracer/Core/Scene.cpp
+        RayTracer/Core/Scene.h
         RayTracer/Shapes/Primitive.h
-        RayTracer/Intersection.h
+        RayTracer/Core/Intersection.h
         RayTracer/Shapes/Sphere.h
-        RayTracer/Quad.h
+        RayTracer/Shapes/Quad.h
         RayTracer/Materials/Material.h
-        RayTracer/BVH.cpp
-        RayTracer/BVH.h
-        RayTracer/Bounds.cpp
-        RayTracer/Bounds.h
+        RayTracer/Accelerator/BVH.cpp
+        RayTracer/Accelerator/BVH.h
+        RayTracer/Accelerator/Bounds.cpp
+        RayTracer/Accelerator/Bounds.h
         RayTracer/BxDF/BxDF.h
         RayTracer/Materials/Diffuse.h
         RayTracer/BxDF/DiffuseBxDF.h
@@ -34,6 +34,8 @@ add_executable(real_time_ray_tracer
         RayTracer/Materials/DiffuseEmissive.h
         RayTracer/BxDF/SpecularBxDF.h
         RayTracer/Materials/Specular.h
+        RayTracer/Samples/CreateScene.h
+        RayTracer/BxDF/GlossyBxDF.h
 )
 
 target_link_libraries(

@@ -5,10 +5,10 @@
 #ifndef REAL_TIME_RAY_TRACER_DIFFUSEEMISSIVE_H
 #define REAL_TIME_RAY_TRACER_DIFFUSEEMISSIVE_H
 
-#include "RealTimeRT.h"
+#include "Core/RealTimeRT.h"
 #include "BxDF/DiffuseBxDF.h"
-#include "Intersection.h"
-#include "Ray.h"
+#include "Core/Intersection.h"
+#include "Core/Ray.h"
 
 
 #include "Material.h"

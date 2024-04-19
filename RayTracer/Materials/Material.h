@@ -5,9 +5,9 @@
 #ifndef REAL_TIME_RAY_TRACER_MATERIAL_H
 #define REAL_TIME_RAY_TRACER_MATERIAL_H
 
-#include "RealTimeRT.h"
-#include "Ray.h"
-#include "Intersection.h"
+#include "Core/RealTimeRT.h"
+#include "Core/Ray.h"
+#include "Core/Intersection.h"
 #include "BxDF/BxDF.h"
 
 

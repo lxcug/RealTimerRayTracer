@@ -5,7 +5,7 @@
 #ifndef REAL_TIME_RAY_TRACER_QUAD_H
 #define REAL_TIME_RAY_TRACER_QUAD_H
 
-#include "shapes/Primitive.h"
+#include "Primitive.h"
 
 
 class Quad : public Primitive {

@@ -8,7 +8,7 @@
 #include "shapes/Primitive.h"
 #include "Materials/Material.h"
 #include <iostream>
-#include "Bounds.h"
+#include "Accelerator/Bounds.h"
 
 
 class Sphere : public Primitive {

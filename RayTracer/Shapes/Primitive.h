@@ -5,9 +5,9 @@
 #ifndef REAL_TIME_RAY_TRACER_PRIMITIVE_H
 #define REAL_TIME_RAY_TRACER_PRIMITIVE_H
 
-#include "RealTimeRT.h"
-#include "Ray.h"
-#include "Intersection.h"
+#include "Core/RealTimeRT.h"
+#include "Core/Ray.h"
+#include "Core/Intersection.h"
 
 
 class Bounds;

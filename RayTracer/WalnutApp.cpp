@@ -3,9 +3,9 @@
 
 #include "Walnut/Image.h"
 #include "Walnut/Timer.h"
-#include "Renderer.h"
-#include "Camera.h"
-#include "Scene.h"
+#include "Core/Renderer.h"
+#include "Core/Camera.h"
+#include "Core/Scene.h"
 #include "glm/gtc/type_ptr.hpp"
 
 

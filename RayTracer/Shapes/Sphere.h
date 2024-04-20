@@ -27,7 +27,7 @@ public:
 
         vec3 o = ray.origin - m_center;
         vec3 d = ray.direction;
-        float a = length(d);
+        float a = 1.f;
         float b = 2 * dot(o, d);
         float c = o.x * o.x + o.y * o.y + o.z * o.z - m_radius * m_radius;
 
@@ -39,9 +39,9 @@ public:
         // Find the nearest root that lies in the acceptable range.
         float root = (-b - sqrted) / (2 * a);
 
-        if (root <= 0 || root >= tMax) {
+        if (root <= RayPrimitiveIntersectMinTime || root >= tMax) {
             root = (-b + sqrted) / (2 * a);
-            if (root <= 0 || root >= tMax)
+            if (root <= RayPrimitiveIntersectMinTime || root >= tMax)
                 return false;
         }
 

@@ -39,24 +39,24 @@ namespace SampleUtils {
     glm::vec2
     sampleUniformDiskConcentric(const glm::vec2 &u = glm::vec2(random_float(), random_float())) {
         // TODO
+
+        return {};
     }
 
     glm::vec3 sampleCosineHemisphere(const glm::vec3 &normal) {
         float xi1 = random_float(), xi2 = random_float();
 
-        float theta = std::acos(sqrt(1.f - xi1));
+        float cosTheta = std::sqrt(xi1);
         float phi = 2.f * pi * xi2;
-        float sin_theta = std::sin(theta);
-        glm::vec3 local_dir(
-                sin_theta * cos(phi),
-                sin_theta * sin(phi),
-                cos(theta)
+        float sinTheta = std::sqrt(1.f - cosTheta * cosTheta);
+        
+        glm::vec3 localDir(
+                sinTheta * cos(phi),
+                sinTheta * sin(phi),
+                cosTheta
         );
 
-        if (glm::dot(local_dir, normal) < 0.f)
-            return -local_dir;
-        else
-            return local_dir;
+        return buildCoordSystem(normal) * localDir;
     }
 
     /*!

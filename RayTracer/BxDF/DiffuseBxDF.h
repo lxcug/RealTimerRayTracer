@@ -26,9 +26,9 @@ public:
 
     [[nodiscard]] glm::vec3 evalLightTransport(const glm::vec3 &wi, const glm::vec3 &wo,
                                  const glm::vec3 &normal) const override {
-        float lightTransport = 1.f;
+        glm::vec3 lightTransport = 1.f * m_albedo;
 
-        return 1.f * m_albedo;
+        return lightTransport;
     }
 
 private:

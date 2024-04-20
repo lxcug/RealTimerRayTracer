@@ -9,7 +9,7 @@
 #include "Accelerator/Bounds.h"
 #include "Shapes/Primitive.h"
 
-#define BVH_LEAF_MAX_PRIMITIVES 4
+#define BVH_LEAF_MAX_PRIMITIVES 1
 
 
 struct BVHNode {

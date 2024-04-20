@@ -16,6 +16,8 @@
 #define RENDER_MODE_OFFLINE 1
 #endif
 
+#define RayPrimitiveIntersectMinTime 1e-3
+
 
 namespace glm {
     using point3 = vec3;

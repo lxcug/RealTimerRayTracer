@@ -22,7 +22,7 @@
 
 class Renderer {
 public:
-    Renderer();
+    Renderer() = default;
 
     ~Renderer() {
         delete[] m_image_data;

@@ -6,10 +6,10 @@
 
 
 uint32_t convert2RGB(const glm::vec4 &color) {
-    uint8_t r = (uint8_t) (std::sqrt(color.r) * 255.0f);
-    uint8_t g = (uint8_t) (std::sqrt(color.g) * 255.0f);
-    uint8_t b = (uint8_t) (std::sqrt(color.b) * 255.0f);
-    uint8_t a = (uint8_t) (std::sqrt(color.a) * 255.0f);
+    auto r = (uint8_t) (std::sqrt(color.r) * 255.0f);
+    auto g = (uint8_t) (std::sqrt(color.g) * 255.0f);
+    auto b = (uint8_t) (std::sqrt(color.b) * 255.0f);
+    auto a = (uint8_t) (std::sqrt(color.a) * 255.0f);
 
     uint32_t result = (a << 24) | (b << 16) | (g << 8) | r;
     return result;
@@ -38,41 +38,6 @@ void Renderer::onResize(uint32_t width, uint32_t height) {
         m_image_vertical_iter[i] = i;
 }
 
-Renderer::Renderer() {
-//#ifdef MULTI_THREAD
-//    m_threads.resize(THREAD_NUM);
-//
-//    m_block_shading_func = [](Renderer *renderer, int startLine, int endLine) {
-//        uint32_t image_width = renderer->getFinalImage()->GetWidth();
-//        for (int y = startLine; y < endLine; y++) {
-//            for (int x = 0; x < image_width; x++) {
-//                uint32_t pixel_index = y * renderer->m_final_image->GetWidth() + x;
-//
-//                glm::vec3 color{0.f};
-//                for (int i = 0; i < renderer->spp; i++) {
-//                    Ray ray(renderer->m_active_camera->getPosition(),
-//                            renderer->m_active_camera->calSuperSamplingOffset(pixel_index));
-//                    color += renderer->traceRay(*renderer->m_active_scene, ray, renderer->m_depth);
-//                }
-//                color *= (1.f / (float) renderer->spp);
-//                renderer->m_accumulation_data[pixel_index] += color;
-//
-//                glm::vec3 accumulated_color = renderer->m_accumulation_data[pixel_index];
-//                accumulated_color /= (float) renderer->m_frame_index;
-//                accumulated_color = glm::clamp(accumulated_color, glm::vec3(0.0f),
-//                                               glm::vec3(1.0f));
-//                renderer->m_image_data[pixel_index] = convert2RGB(glm::vec4(accumulated_color, 1.f));
-//            }
-//        }
-//        renderer->m_render_frame_lock.unlock();
-//        ++renderer->m_finished_threads;
-//        if (renderer->m_finished_threads == THREAD_NUM) {
-//            renderer->m_wait_all_threads_finished.notify_one();
-//        }
-//    };
-//#endif
-}
-
 void Renderer::render(const Scene &scene, Camera &camera) {
     m_active_scene = &scene;
     m_active_camera = &camera;
@@ -87,27 +52,6 @@ void Renderer::render(const Scene &scene, Camera &camera) {
         memset(m_accumulation_data, 0,
                m_final_image->GetWidth() * m_final_image->GetHeight() * sizeof(glm::vec3));
     }
-
-//#if MULTI_THREAD
-//    m_finished_threads = 0;
-//    int thread_lines_count = std::ceil((float)m_final_image->GetHeight() / THREAD_NUM);
-//    int last_thread_lines = (int)m_final_image->GetHeight() - thread_lines_count * THREAD_NUM;
-//
-//    int start, end;
-//    for (int i = 0; i < THREAD_NUM-1; i++) {
-//        start = i * thread_lines_count;
-//        end = (i + 1) * thread_lines_count;
-//        m_threads[i] = std::thread(m_block_shading_func, this, start, end);
-//        m_threads[i].detach();
-//    }
-//    start = THREAD_NUM * thread_lines_count;
-//    end = THREAD_NUM * thread_lines_count + last_thread_lines;
-//    m_threads[THREAD_NUM-1] = std::thread(m_block_shading_func, this, start, end);
-//    m_threads[THREAD_NUM-1].detach();
-//
-//    std::unique_lock<std::mutex> locker(m_render_frame_lock);
-//    m_wait_all_threads_finished.wait(locker, [this]() { return this->m_finished_threads == THREAD_NUM; });
-//#endif
 
 #if MULTI_THREAD
     std::for_each(std::execution::par_unseq, m_image_vertical_iter.begin(),

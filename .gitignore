@@ -1,4 +1,6 @@
 cmake-build-release-visual-studio
 cmake-build-debug-visual-studio
+cmake-build-release-visual-studio-2022
+cmake-build-debug-visual-studio-2022
 .idea
 .vs

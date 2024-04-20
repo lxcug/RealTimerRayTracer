@@ -65,7 +65,7 @@ private:
 
 Walnut::Application *Walnut::CreateApplication(int argc, char **argv) {
     Walnut::ApplicationSpecification spec;
-    spec.Name = "Real-Time Ray Tracing";
+    spec.Name = "Real-Time Ray Tracer";
 
     Walnut::Application *app = new Walnut::Application(spec);
     app->PushLayer<ExampleLayer>();

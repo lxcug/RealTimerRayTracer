@@ -11,7 +11,7 @@
 
 class DiffuseMaterial : public Material {
 public:
-    explicit DiffuseMaterial(const glm::vec3 albedo) : m_BxDF(albedo) {}
+    explicit DiffuseMaterial(const glm::vec3 &albedo) : m_BxDF(albedo) {}
 
     [[nodiscard]] BxDFSample scatter(const Ray &ray, const Intersection &isect) const override {
         BxDFSample sample = m_BxDF.sampleF(-ray.direction, isect.normal);

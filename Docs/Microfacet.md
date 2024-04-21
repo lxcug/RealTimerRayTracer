@@ -85,13 +85,46 @@ $$
 $$
 记
 $$
-D_\omega(\omega_m) = \frac{G_1(\omega)}{\cos\theta} D(\omega_m) \max(0, \omega \cdot\omega_m)
+D_\omega(\omega_m) = \frac{G_1(\omega)}{\cos\theta} D(\omega_m) \max(0, \omega \cdot\omega_m) \tag{3}\label{pdf of wm}
 $$
-**$D_\omega(\omega_m)$就是以$\omega$​为观察方向的微表面材质的法线分布概率密度函数，通过$D_\omega(\omega_m)$可以计算出特定观察方向上
+$D_\omega(\omega_m)$就是以$\omega$​为观察方向的微表面材质的法线分布概率密度函数，通过$D_\omega(\omega_m)$可以计算出特定观察方向上微表面法线$w_m$的概率密度，我们通过某种方法采样出微表面法线方向$\omega_m$​​，就可以得到incident direction `wi = reflect(-wo, wm)`，因为每个微表面反射视为镜面反射，**注意由于我们是采样微表面法线$w_m$进而推导出incident direction $\omega_i$，所以我们还要根据$\omega_m$的概率密度推出$\omega_i$的概率密度**，为了由$\omega_m$的pdf推出$\omega_i$的pdf，我们需要推出$\frac{\mathrm \omega_i}{\mathrm d\omega_m}$，
+
+> 在法线空间下$n=(0, 0, 1)$，$\omega_i=(\theta_i, \phi_i), \omega_i=(\theta_o, \phi_o), \omega_m=(\theta_m, \phi_m)$，
+> $$
+> \omega_i = -\omega_o + 2(\omega_m, \omega_o)\omega_m\\
+> \omega_m = \frac{\omega_i + \omega_o}{|| \omega_i + \omega_o ||}
+> $$
+> <img src="https://raw.githubusercontent.com/lxcug/imgs/main/20240421142913.png" style="zoom:150%;" />
+> $$
+> \frac{\mathrm d\omega_m}{\mathrm d\omega_i} = \frac{\sin\theta_m \mathrm d\theta_m \mathrm d\phi_m}{\sin\theta_i \mathrm d\theta_i \mathrm d\phi_i} \tag{4}\label{4}
+> $$
+> 在法线空间下我们不好得到$\frac{\mathrm d\omega_m}{\mathrm d\omega_i}$，考虑将equation $\eqref{4}$中的所有方向和角度转换到以$\omega_o$为z轴的空间中，在此空间下$\theta_i = 2\theta_m, \phi_i=\phi_m$，equation $\eqref{4}$可以进行化简，
+> $$
+> \begin{aligned}
+> \frac{\mathrm d\omega_m}{\mathrm d\omega_i} &= \frac{\sin\theta_m \mathrm d\theta_m \mathrm d\phi_m}{\sin\theta_i \mathrm d\theta_i \mathrm d\phi_i} \\
+> &= \frac{\sin\theta_m \mathrm d\theta_m }{\sin2\theta_m 2\mathrm d\theta_m} \\
+> &= \frac{1}{4\cos\theta_m} \\
+> &= \frac{1}{4(\omega_i, \omega_m)}\\
+> &= \frac{1}{4(\omega_o, \omega_m)}
+> \end{aligned}
+> $$
+> 所以$\omega_i$的pdf为，
+> $$
+> p(\omega_i) = p(\omega_m)\frac{\mathrm d\omega_m}{\mathrm d\omega_i} = \frac{D_\omega(\omega_m)}{4(\omega_i, \omega_m)}
+> $$
+> 
 
 
+
+
+
+TODO: Sampling in PBRT
 
 ![](https://raw.githubusercontent.com/lxcug/imgs/main/20240419180119.png)
+
+
+
+## BRDF of Microfacets
 
 
 

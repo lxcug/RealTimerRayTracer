@@ -30,9 +30,15 @@ const float pi = 3.1415926535897932385;
 const float inv_pi = 1.f / pi;
 
 
-inline double degrees_to_radians(double degrees) {
+inline double deg2Rad(double degrees) {
     return degrees * pi / 180.0;
 }
+
+inline bool isInf(float v) {
+    return std::isinf(v);
+}
+
+#define printVec3(v) std::cout << v.x << " " << v.y << " " << v.z << '\n'
 
 inline uint32_t PCG_hash(uint32_t input) {
     uint32_t state = input * 747796405u + 2891336453u;

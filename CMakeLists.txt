@@ -36,6 +36,7 @@ add_executable(real_time_ray_tracer
         RayTracer/Materials/Specular.h
         RayTracer/Samples/CreateScene.h
         RayTracer/BxDF/GlossyBxDF.h
+        RayTracer/Materials/Glossy.h
 )
 
 target_link_libraries(

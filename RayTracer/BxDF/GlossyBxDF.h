@@ -19,20 +19,23 @@ public:
     [[nodiscard]] BxDFSample
     sampleF(const glm::vec3 &wo, const glm::vec3 &normal) const override {
         BxDFSample sample;
-        glm::vec3 wm = SampleUtils::Microfacet::sampleMicrofacet(wo, normal, m_roughness);
+        glm::vec3 wm = SampleUtils::Microfacet::sampleMicrofacetNormal(wo, normal, m_roughness);
+        wm = glm::vec3(0.f, 0.f, 1.f);
         sample.wi = glm::reflect(-wo, wm);
         sample.lightTransport = evalLightTransport(wo, wm, normal);
-        // Note: Add cosine term to light transport
-        sample.lightTransport *= glm::dot(sample.wi, normal);
         sample.flag = BxDFFlags::Glossy;
 
         return sample;
     }
 
-    [[nodiscard]] glm::vec3 evalLightTransport(const glm::vec3 &wo, const glm::vec3 &wm,
+    [[nodiscard]] glm::vec3 evalLightTransport(const glm::vec3 &wi, const glm::vec3 &wo,
                                                const glm::vec3 &normal) const override {
-        float pdf = SampleUtils::Microfacet::PDF(wo, wm, normal, m_roughness);
-        glm::vec3 f = m_albedo;  // TODO: cal Microfacet BRDF;
+        glm::vec3 wm = glm::normalize(wi + wo);
+
+        float pdf = SampleUtils::Microfacet::PDF_wi(wo, wm, normal, m_roughness);
+        float cosTheta = std::max(0.f, glm::dot(wi, normal));
+        glm::vec3 f =
+                m_albedo * SampleUtils::Microfacet::BRDF(wi, wo, normal, m_roughness) * cosTheta;
 
         return f / pdf;
     }

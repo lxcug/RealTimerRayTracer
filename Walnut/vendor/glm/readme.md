@@ -184,7 +184,7 @@ glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
 - Added missing aligned matrix types to *GLM_GTC_type_aligned*
 - Added C++17 detection
 - Added *Visual C++* language standard version detection
-- Added PDF manual build from markdown
+- Added PDF_wm manual build from markdown
 
 #### Improvements:
 - Added a section to the manual for contributing to *GLM*

@@ -1945,7 +1945,7 @@ GENERATE_AUTOGEN_DEF   = NO
 GENERATE_PERLMOD       = NO
 
 # If the PERLMOD_LATEX tag is set to YES, doxygen will generate the necessary
-# Makefile rules, Perl scripts and LaTeX code to be able to generate PDF and DVI
+# Makefile rules, Perl scripts and LaTeX code to be able to generate PDF_wm and DVI
 # output from the Perl module output.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_PERLMOD is set to YES.

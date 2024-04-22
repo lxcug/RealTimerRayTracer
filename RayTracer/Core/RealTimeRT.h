@@ -38,6 +38,28 @@ inline bool isInf(float v) {
     return std::isinf(v);
 }
 
+inline bool isNan(float v) {
+    return std::isnan(v) || std::isnan(-v);
+}
+
+inline bool isNan(const glm::vec3 &v) {
+    if (isNan(v.x))
+        return true;
+    if (isNan(v.y))
+        return true;
+    if (isNan(v.z))
+        return true;
+    return false;
+}
+
+inline glm::vec3 faceForward(const glm::vec3 &w, const glm::vec3 &normal) {
+    return glm::dot(w, normal) >= 0.f ? w : -w;
+}
+
+inline glm::vec3 reflect(const glm::vec3 &wo, const glm::vec3 &normal) {
+    return glm::reflect(-wo, normal);
+}
+
 #define printVec3(v) std::cout << v.x << " " << v.y << " " << v.z << '\n'
 
 inline uint32_t PCG_hash(uint32_t input) {
@@ -74,13 +96,12 @@ inline int random_int(int min = 0, int max = 1) {
     return static_cast<int>(random_float(min, max + 1));
 }
 
-inline glm::vec3 random_vec3(float min = 0., float max = 1.) {
-    return {random_float(min, max), random_float(min, max), random_float(min, max)};
+inline glm::vec2 random_vec2(float min = 0., float max = 1.f) {
+    return {random_float(min, max), random_float(min, max)};
 }
 
-inline glm::vec3 random_vec3(uint32_t &seed) {
-    return {random_float(seed) * 2.f - 1.f, random_float(seed) * 2.f - 1.f,
-            random_float(seed) * 2.f - 1.f};
+inline glm::vec3 random_vec3(float min = 0., float max = 1.) {
+    return {random_float(min, max), random_float(min, max), random_float(min, max)};
 }
 
 template<class T>

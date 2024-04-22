@@ -207,7 +207,7 @@ namespace SampleUtils {
             float cosTheta_i = std::abs(glm::dot(wi, normal));
             float cosTheta_o = std::abs(glm::dot(wo, normal));
             float D = D_GGX(wm, normal, alpha);
-            float F = Fresnel(wo, wm, 0.21);  // TODO
+            float F = Fresnel(wo, wm, 0.4);  // TODO
             float G = G_Smith(wi, wo, normal, alpha);
 
             return D * F * G / (4.f * cosTheta_i * cosTheta_o);
@@ -253,7 +253,7 @@ namespace SampleUtils {
             glm::vec3 wm_world = glm::inverse(world2Normal) * wm_normal;
             wm_world = faceForward(wm_world, normal);
 
-            return sampleCosineHemisphere(normal);
+            return wm_world;
         }
 
 #else

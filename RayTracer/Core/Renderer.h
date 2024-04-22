@@ -55,8 +55,8 @@ private:
 private:
     std::shared_ptr<Walnut::Image> m_final_image;  // image data in gpu side
     uint32_t *m_image_data = nullptr;  // image data in cpu side
-    int m_depth = 10;
-    float m_russianRoulette = 1.f;
+    int m_depth = 20;
+    float m_russianRoulette = 0.7f;
     int m_spp = 1;
 
     const Scene *m_active_scene = nullptr;

@@ -15,11 +15,14 @@ public:
 
     [[nodiscard]] BxDFSample sampleF(const glm::vec3 &wo, const glm::vec3 &normal) const override {
         BxDFSample sample;
+        sample.flag = BxDFFlags::Specular;
 
-        glm::vec3 wi = glm::reflect(-wo, normal);
+        if (glm::dot(wo, normal) < 0.f)
+            return sample;
+
+        glm::vec3 wi = reflect(wo, normal);
         sample.wi = wi;
         sample.lightTransport = evalLightTransport(wi, wo, normal);
-        sample.flag = BxDFFlags::Specular;
 
         return sample;
     }

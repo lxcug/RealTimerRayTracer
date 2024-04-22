@@ -47,7 +47,7 @@ inline bool isSpecular(BxDFFlags flag) {
 struct BxDFSample {
     glm::vec3 wi;
     glm::vec3 lightTransport{0.f};  // albedo * f * cos(theta) / pdf
-    BxDFFlags flag;
+    BxDFFlags flag{BxDFFlags::Unset};
 };
 
 

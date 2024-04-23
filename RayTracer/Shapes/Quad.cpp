@@ -16,9 +16,6 @@ Quad::Quad(const glm::point3 &q, const glm::vec3 &u, const glm::vec3 &v,
 
 bool Quad::intersect(const Ray &ray, float tMax, Intersection &isect) const {
     float denom = glm::dot(normal, ray.direction);
-    if (denom > 0.f) {
-        isect.backFace = true;
-    }
 
     if (std::abs(denom) < 1e-8)
         return false;
@@ -33,6 +30,11 @@ bool Quad::intersect(const Ray &ray, float tMax, Intersection &isect) const {
     float beta = glm::dot(w, glm::cross(m_uWorld, planar_hitpt_vector));
     if (alpha < 0.f || alpha > 1.f || beta < 0.f || beta > 1.f)
         return false;
+
+    // Note: Set backface after intersection
+    if (denom > 0.f) {
+        isect.backFace = true;
+    }
 
     isect.t = t;
     isect.p = isect_point;

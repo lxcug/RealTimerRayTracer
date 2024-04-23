@@ -35,7 +35,7 @@ public:
     }
 
     void setTransform(const glm::vec3 &translation, const glm::vec3 &scale = glm::vec3(1.f),
-                              const glm::quat &rotation = glm::identity<glm::quat>()) override {
+                      const glm::quat &rotation = glm::identity<glm::quat>()) override {
         m_transform = glm::translate(glm::identity<glm::mat4>(), translation);
         m_transform = m_transform * glm::mat4_cast(rotation);
         m_transform = glm::scale(m_transform, scale);

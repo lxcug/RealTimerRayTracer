@@ -14,7 +14,7 @@
 
 > **Unnamed**
 >
-> ![image-20240423212318526](C:\Users\HUSTLX\AppData\Roaming\Typora\typora-user-images\image-20240423212318526.png)
+> ![](https://raw.githubusercontent.com/lxcug/imgs/main/image-20240423212318526.png)
 
 
 

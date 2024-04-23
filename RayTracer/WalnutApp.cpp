@@ -17,7 +17,10 @@ public:
 
     void OnUpdate(float ts) override {
         if (m_camera.onUpdate(ts)) {
+            m_renderer.setRussianRoulette(0.2f);
             m_renderer.resetFrameIndex();
+        } else {
+            m_renderer.setRussianRoulette(1.f);
         }
     }
 

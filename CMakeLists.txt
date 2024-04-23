@@ -23,7 +23,6 @@ add_executable(real_time_ray_tracer
         RayTracer/Shapes/Primitive.h
         RayTracer/Core/Intersection.h
         RayTracer/Shapes/Sphere.h
-        RayTracer/Shapes/Quad.h
         RayTracer/Materials/Material.h
         RayTracer/Accelerator/BVH.cpp
         RayTracer/Accelerator/BVH.h
@@ -37,8 +36,16 @@ add_executable(real_time_ray_tracer
         RayTracer/BxDF/SpecularBxDF.h
         RayTracer/Materials/Specular.h
         RayTracer/Samples/CreateScene.h
+        RayTracer/Samples/CreateScene.cpp
         RayTracer/BxDF/GlossyBxDF.h
         RayTracer/Materials/Glossy.h
+        RayTracer/Shapes/Quad.cpp
+        RayTracer/Shapes/Quad.h
+        RayTracer/Shapes/Sphere.cpp
+        RayTracer/Shapes/TriangleMesh.cpp
+        RayTracer/Shapes/TriangleMesh.h
+        RayTracer/Shapes/AllShapes.h
+        RayTracer/Materials/AllMaterials.h
 )
 
 add_executable(
@@ -51,6 +58,7 @@ add_executable(
         RayTracer/BxDF/SampleUtils.h
         RayTracer/BxDF/SpecularBxDF.h
         RayTracer/BxDF/GlossyBxDF.h
+        RayTracer/Samples/CreateScene.cpp
 )
 
 target_link_libraries(

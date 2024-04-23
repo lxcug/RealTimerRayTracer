@@ -120,7 +120,7 @@ glm::vec3 Renderer::traceRay(const Scene &scene, const Ray &ray, int depth) {
         return scene.getBackgroundColor();
     }
 
-    glm::vec3 color_from_emission = isect.mat->emit(isect.u, isect.v, isect.p);
+    glm::vec3 color_from_emission{0.f};
     if (!isect.backFace) {
         color_from_emission = isect.mat->emit(isect.u, isect.v, isect.p) / m_russianRoulette;
     }

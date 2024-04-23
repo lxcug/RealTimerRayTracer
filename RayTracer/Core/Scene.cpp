@@ -8,7 +8,7 @@
 
 
 Scene::Scene() {
-    createCornellBox(*this);
+    createTestScene(*this);
 
     // Build BVH
     m_bvh_tree = std::make_shared<BVH>(m_objects);

@@ -204,20 +204,13 @@ namespace SampleUtils {
         BRDF(const glm::vec3 &wi, const glm::vec3 &wo, const glm::vec3 &normal,
              float alpha) {
             glm::vec3 wm = glm::normalize(wi + wo);
-            float cosTheta_i = glm::dot(wi, normal);
-            float cosTheta_o = glm::dot(wo, normal);
+            float cosTheta_i = std::max(0.f, glm::dot(wi, normal));
+            float cosTheta_o = std::max(0.f, glm::dot(wo, normal));
             float D = D_GGX(wm, normal, alpha);
             float F = Fresnel(wo, wm, 0.4);  // TODO: different for metal and dielectric
             float G = G_Smith(wi, wo, normal, alpha);
 
-            if (cosTheta_i < 0.f || cosTheta_o < 0.f)
-                return 0.f;
-
-            float nom = D * F * G;
-            if (nom < 0.f || isInf(nom) || isNan(nom))
-                return 0.f;
-
-            return nom / (4.f * cosTheta_i * cosTheta_o);
+            return D * F * G / (4.f * cosTheta_i * cosTheta_o);
         }
 
         /*!

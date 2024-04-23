@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/RealTimeRT.h"
 
 #ifdef WL_PLATFORM_WINDOWS
 
@@ -9,13 +10,16 @@ namespace Walnut {
 
 	int Main(int argc, char** argv)
 	{
+#if RENDER_MODE_REAL_TIME
             while (g_ApplicationRunning)
             {
                 Walnut::Application* app = Walnut::CreateApplication(argc, argv);
                 app->Run();
                 delete app;
             }
+#elif RENDER_MODE_OFFLINE
 
+#endif
             return 0;
 	}
 

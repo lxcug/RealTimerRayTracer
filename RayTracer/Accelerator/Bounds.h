@@ -16,10 +16,22 @@ public:
     Bounds() : m_min(glm::point3(float_max)), m_max(glm::point3(float_min)) {}
 
     Bounds(const glm::point3 &p1, const glm::point3 &p2) : m_min(glm::min(p1, p2)),
-                                                           m_max(glm::max(p1, p2)) {}
+                                                           m_max(glm::max(p1, p2)) {
+        float delta = 1e-3;
+        for (int i = 0; i < 3; i++) {
+            if (m_max[i] - m_min[i] < delta) {
+                expand(i, delta);
+            }
+        }
+    }
 
     Bounds(const Bounds &b1, const Bounds &b2) : m_min(glm::min(b1.m_min, b2.m_min)),
                                                  m_max(glm::max(b1.m_max, b2.m_max)) {}
+
+    void expand(int dim, float delta) {
+        m_min[dim] -= delta;
+        m_max[dim] += delta;
+    }
 
     bool intersect(const Ray &r);
 

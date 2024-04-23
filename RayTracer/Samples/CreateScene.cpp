@@ -28,13 +28,10 @@ void createTestScene(Scene &scene) {
     scene.m_objects.push_back(diffuseSphere1);
 
     std::shared_ptr<Sphere> glossySphere =
-            std::make_shared<Sphere>(.7, std::make_shared<GlossyMaterial>(random_vec3(), .1f));
-    glossySphere->setTransform(glm::vec3(0.f, 0.f, 3.f), glm::vec3(2.f));
+            std::make_shared<Sphere>(.7, std::make_shared<GlossyMaterial>(random_vec3(), 0.f));
+    glossySphere->setTransform(glm::vec3(-2.f, 0.f, 3.f), glm::vec3(2.f));
     scene.m_objects.push_back(glossySphere);
 
-    scene.m_objects.push_back(
-            std::make_shared<Sphere>(glm::vec3(-2., 0., 3.), .5,
-                                     std::make_shared<DiffuseEmissiveMaterial>(random_vec3())));
     scene.m_objects.push_back(
             std::make_shared<Sphere>(glm::vec3(0., -1., 5.3), .5,
                                      std::make_shared<DiffuseEmissiveMaterial>(random_vec3())));
@@ -44,10 +41,19 @@ void createTestScene(Scene &scene) {
     );
 
     std::shared_ptr<Quad> quadLight =
-            std::make_shared<Quad>(glm::vec3(-5.f, 0.f, -2.f), glm::vec3(10.f, 0.f, 0.f),
+            std::make_shared<Quad>(glm::vec3(-5.f, -1.5f, -2.f), glm::vec3(10.f, 0.f, 0.f),
                                    glm::vec3(0.f, 4.f, 0.f),
                                    emissiveMat);
-    scene.m_objects.push_back(quadLight);
+    scene.addObject(quadLight);
+
+    std::shared_ptr<Quad> mirror =
+            std::make_shared<Quad>(glm::vec3(-8.f, 0.f, 6.f),
+                                   glm::vec3(0.f, 3.f, 0.f),
+                                   glm::vec3(10.f, 0.f, 0.f),
+                                   std::make_shared<SpecularMaterial>(random_vec3()));
+    mirror->setTransform(glm::vec3(0.f), glm::vec3(1.f),
+                         glm::angleAxis(glm::radians(60.f), glm::vec3(0.f, 1.f, 0.)));
+    scene.addObject(mirror);
 }
 
 void createCornellBox(Scene &scene) {

@@ -4,8 +4,6 @@
 
 
 
-
-
 ## 2. Documents
 
 [BxDF Implementation](./Docs/BxDF.md)
@@ -16,7 +14,7 @@
 
 > **Unnamed**
 >
-> ![](https://raw.githubusercontent.com/lxcug/imgs/main/20240423190031.png)
+> ![image-20240423212318526](C:\Users\HUSTLX\AppData\Roaming\Typora\typora-user-images\image-20240423212318526.png)
 
 
 

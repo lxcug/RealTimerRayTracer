@@ -186,7 +186,7 @@ namespace SampleUtils {
             return pdf_wm / (4.f * std::abs(glm::dot(wo, wm)));
         }
 
-        float Fresnel(const glm::vec3 &wo, const glm::vec3 &wm, float F0 = 0.04) {
+        inline float Fresnel(const glm::vec3 &wo, const glm::vec3 &wm, float F0 = 0.04) {
             float cosTheta = std::max(0.f, glm::dot(wo, wm));
 
             return F0 + (1.f - F0) * pow(1 - cosTheta, 5.f);

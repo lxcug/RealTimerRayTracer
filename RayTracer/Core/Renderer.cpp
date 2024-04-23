@@ -111,7 +111,7 @@ void Renderer::render(const Scene &scene, Camera &camera) {
 }
 
 glm::vec3 Renderer::traceRay(const Scene &scene, const Ray &ray, int depth) {
-    if (depth <= 0 || m_depth - depth >= 3 && random_float() > m_russianRoulette) {
+    if (depth <= 0 || random_float() > m_russianRoulette) {
         return scene.getBackgroundColor();
     }
 
@@ -121,17 +121,18 @@ glm::vec3 Renderer::traceRay(const Scene &scene, const Ray &ray, int depth) {
     }
 
     glm::vec3 color_from_emission = isect.mat->emit(isect.u, isect.v, isect.p);
+    if (!isect.backFace) {
+        color_from_emission = isect.mat->emit(isect.u, isect.v, isect.p) / m_russianRoulette;
+    }
 
     BxDFSample sample = isect.mat->scatter(ray, isect);
     Ray scattered(isect.p, sample.wi);
 
     // Note: Monte-Carlo Integration
-    glm::vec3 color_from_scatter;
-    if (m_depth - depth >= 3)
-        color_from_scatter =
-                traceRay(scene, scattered, depth - 1) * sample.lightTransport / m_russianRoulette;
-    else
-        color_from_scatter = traceRay(scene, scattered, depth - 1) * sample.lightTransport;
+    glm::vec3 color_from_scatter{0.f};
+    color_from_scatter =
+            traceRay(scene, scattered, depth - 1) * sample.lightTransport / m_russianRoulette;
+
 
     return color_from_emission + color_from_scatter;
 }

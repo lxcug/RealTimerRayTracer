@@ -18,9 +18,8 @@ struct Intersection {
     glm::vec3 normal;
     float t;
     std::shared_ptr<Material> mat;
-
-    // TODO
     float u, v;
+    bool backFace{false};
 };
 
 

@@ -49,6 +49,10 @@ public:
         return m_spp;
     }
 
+    void setRussianRoulette(float prob) {
+        m_russianRoulette = prob;
+    }
+
 private:
     glm::vec3 traceRay(const Scene &scene, const Ray &ray, int depth);
 
@@ -56,7 +60,7 @@ private:
     std::shared_ptr<Walnut::Image> m_final_image;  // image data in gpu side
     uint32_t *m_image_data = nullptr;  // image data in cpu side
     int m_depth = 20;
-    float m_russianRoulette = 0.7f;
+    float m_russianRoulette = .95f;
     int m_spp = 1;
 
     const Scene *m_active_scene = nullptr;

@@ -34,6 +34,11 @@ public:
         return m_background_color;
     }
 
+public:
+    friend void createCornellBox(Scene &scene);
+
+    friend void createTestScene(Scene &scene);
+
 private:
     std::vector<std::shared_ptr<Primitive>> m_objects;
     glm::vec3 m_background_color{0.f};

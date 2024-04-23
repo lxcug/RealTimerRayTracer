@@ -56,11 +56,11 @@ private:
     glm::mat4 m_view{glm::identity<glm::mat4>()}, m_projection{glm::identity<glm::mat4>()};
     glm::mat4 m_inv_view{glm::identity<glm::mat4>()}, m_inv_projection{glm::identity<glm::mat4>()};
 
-    float m_vertical_fov{45.f};
+    float m_vertical_fov{90.f};
     float m_near_clip{.1f}, m_far_clip{1000.};
 
-    glm::vec3 m_position{glm::vec3(0., 5., 12.f)};
-    glm::vec3 m_forward_direction{glm::vec3(0.f, -.3f, -1.f)};
+    glm::vec3 m_position{glm::vec3(0., 2., 5.f)};
+    glm::vec3 m_forward_direction{glm::vec3(0.f, .2f, -1.f)};
 
     // Note: cached ray directions
     std::vector<glm::vec3> m_ray_directions;
